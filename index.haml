@@ -10,8 +10,38 @@
     %link{:href => "causes.css", :rel => "stylesheet"}/
     / overrides for default reveal styles
     :css
+      .slides {
+        position: relative;
+      }
       .reveal pre {
         font-size: 24px;
+      }
+      .image-container {
+        text-align: center;
+        position: relative;
+      }
+      .move-to-the-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+      }
+      .citation-link {
+        font-size: 18px !important;
+        position: absolute !important;
+        bottom: 0;
+        right: 0;
+      }
+      .performance-table {
+        font-size: 16px !important;
+      }
+      .performance-table th {
+        font-weight: bold;
+        width: 150px;
+      }
+      .performance-table td {
+        padding: 3px;
       }
   %body#causes
     .reveal
@@ -23,24 +53,117 @@
           %h5 presented by
           %h4 Tom Dooner
           %img.logo{:src => 'assets/causes-logo.png'}
-        %section
-          %aside.notes
-            Let's talk about putting mobile first
+          /
+            How many have heard of mobile first?
 
         %section
-          %h2 Slide title
+          %h2 Mobile Last
+          .image-container
+            %img{ src: 'assets/cwru-homepage.png', style: 'width: 230px' }
+
+        %section
+          %h2 Mobile First
           %ul
-            %li.fragment
-              A bullet point
-            %li.fragment
-              Another bullet point
-              %pre.fragment
-                %code.language-ruby{:contenteditable => ""}
-                  :preserve
-                    # this is Ruby code
-                    &lt;%= @cause.name %&gt;
-            %li.fragment
-              Another bullet point
+            %li
+              Why
+              %ul
+                %li Accessibility
+                %li Performance
+                %li Simplicity
+            %li
+              How
+              %ul
+                %li ???
+
+        %section.image-container
+          %div{ style: 'position: relative;' }
+            %img{ src: 'assets/phone.svg', style: 'height: 400px' }
+            .move-to-the-center
+              25%
+
+        %section
+          %h2 2014
+          %ul
+            %li The year when mobile traffic surpasses desktop traffic
+            %li.fragment (oh hey, that's next year!)
+          %a.citation-link{ href: 'http://www.businessinsider.com/mobile-will-eclipse-desktop-by-2014-2012-6' }
+            [citation]
+
+        %section
+          %h2 Performance @ Google
+          %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
+          %table.performance-table
+            %thead
+              %th Type of Delay
+              %th Magnitude
+              %th Duration
+              %th Impact
+            %tbody
+              %tr
+                %td Pre-header
+                %td 50 ms
+                %td 4 weeks
+                %td —
+              %tr
+                %td Pre-header
+                %td 100 ms
+                %td 4 weeks
+                %td -0.20%
+              %tr
+                %td Post-header
+                %td 200 ms
+                %td 6 weeks
+                %td -0.29%
+              %tr
+                %td Post-header
+                %td 400 ms
+                %td 6 weeks
+                %td -0.59%
+              %tr
+                %td Post-ads
+                %td 200 ms
+                %td 4 weeks
+                %td -0.30%
+          .citation-link
+            %a{ href: 'http://services.google.com/fh/files/blogs/google_delayexp.pdf' } [citation]
+            %a{ href: 'http://thenounproject.com/noun/clock/#icon-No1164' } [attribution]
+          / it took five weeks or so for the effect to wear off
+
+        %section
+          %h2 Performance @ Amazon
+          %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
+          %ul
+            %li 100 ms = 1% of sales
+          .citation-link
+            %a{ href: 'https://sites.google.com/site/glinden/Home/StanfordDataMining.2006-11-28.ppt?attredirects=0' } [citation]
+
+        %section
+          %h2 Performance
+          %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
+          %ul
+            %li 3+ Seconds = -40% Users
+          .citation-link
+            %a{ href: 'http://www.akamai.com/html/about/press/releases/2009/press_091409.html' } [citation]
+
+        %section
+          %h2 Simplicity
+
+        / the ultimate sophistication
+        /
+          %section
+            %h2 Slide title
+            %ul
+              %li.fragment
+                A bullet point
+              %li.fragment
+                Another bullet point
+                %pre.fragment
+                  %code.language-ruby{:contenteditable => ""}
+                    :preserve
+                      # this is Ruby code
+                      &lt;%= @cause.name %&gt;
+              %li.fragment
+                Another bullet point
 
       /
         required for correct operation of reveal.js,
@@ -56,9 +179,11 @@
     :javascript
       Reveal.initialize({
         controls: false,
-        progress: false,
         history: true,
         mouseWheel: false,
-        rollingLinks: false
+        progress: false,
+        rollingLinks: false,
+        transition: 'fade',
+        transitionSpeed: 'fast',
       });
       hljs.initHighlightingOnLoad();
