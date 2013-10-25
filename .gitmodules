@@ -4,3 +4,6 @@
 [submodule "highlight"]
 	path = highlight
 	url = git://github.com/isagalaev/highlight.js.git
+[submodule "head.js"]
+	path = head.js
+	url = https://github.com/headjs/headjs.git
