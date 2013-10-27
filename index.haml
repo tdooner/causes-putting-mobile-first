@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title Presentation title
+    %title Putting Mobile First
     %meta{:content => "Causes Engineering", :name => "author"}/
     %link{:href => "http://fonts.googleapis.com/css?family=Montserrat:400,700", :rel => "stylesheet", :type => "text/css"}/
     %link{:href => "reveal/css/reveal.min.css", :rel => "stylesheet"}/
@@ -81,7 +81,7 @@
             to.
 
         %section
-          %h2 Obligatory XKCD
+          %h3 Obligatory XKCD
           .image-container
             %img{ src: 'assets/xkcd.png', style: 'width: 672px' }
 
@@ -92,7 +92,7 @@
             however they want to digest it.
 
         %section
-          %h2 Not Mobile Last
+          %h3 Not Mobile Last
           .image-container
             %img{ src: 'assets/causes-one.png', style: 'width: 230px' }
 
@@ -131,7 +131,7 @@
                 users on the table.
 
         %section
-          %h2 2014
+          %h3 2014
           %ul
             %li The year when mobile traffic surpasses desktop traffic
             %li.fragment (oh hey, that's next year!)
@@ -146,7 +146,7 @@
           %h2 Performance
 
         %section
-          %h2 Performance @ Google
+          %h3 Performance @ Google
           %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
           %table.performance-table.fragment
             %thead
@@ -183,10 +183,12 @@
           .citation-link
             %a{ href: 'http://services.google.com/fh/files/blogs/google_delayexp.pdf' } [citation]
             %a{ href: 'http://thenounproject.com/noun/clock/#icon-No1164' } [attribution]
-          / it took five weeks or so for the effect to wear off
+
+          %aside.notes
+            It took five weeks for the adverse effects to wear off.
 
         %section
-          %h2 Performance @ Amazon
+          %h3 Performance @ Amazon
           %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
           %ul
             %li 100 ms = -1% of sales
@@ -194,7 +196,7 @@
             %a{ href: 'https://sites.google.com/site/glinden/Home/StanfordDataMining.2006-11-28.ppt?attredirects=0' } [citation]
 
         %section
-          %h2 Performance
+          %h3 Performance
           %img{ src: 'assets/clock.svg', style: 'height: 200px; padding: 50px; float: left;' }
           %ul
             %li 3+ Seconds = -40% Users
@@ -214,7 +216,7 @@
           %ul
             %li Eye on Performance
             %li Avoiding UI Dangers
-            %li Sieze the Opportunities!
+            %li Seize the Opportunities!
 
         %section
           .image-container.speedcurve-image
@@ -228,7 +230,8 @@
             %img{ src: 'assets/waterfall.png' }
 
         %section
-          %h3 Latency
+          %h3 Eye on Performance
+          %h4 Latency
           %ul
             %li 3G: &gt; 400 ms
             %li 4G: &gt; 150 ms
@@ -256,7 +259,8 @@
             SEO benefits too!
 
         %section
-          %h2 Progressive Enhancement
+          %h3 Prioritize the Critical Rendering Path
+          %h4 Progressive Enhancement
           %ul
             %li Don't rely on JS for mission-critical functionality
 
@@ -270,20 +274,57 @@
             %li.fragment JS Script Loader
 
           %aside.notes
-            Embrace the @media query!
+            %ul
+              %li
+                Embrace the @media query! There are great compass mixins that
+                can help with this.
+              %li
+                If JS is no longer in the critical rendering path, don't load it
+                until the rest of the page is ready
+
+        %section
+          %pre
+            %code.language-css
+              :preserve
+                @mixin enhance($breakpoint) {
+                  @if length($breakpoint) == 1 {
+                    @media only screen and (min-width: $breakpoint) {
+                      @content;
+                    }
+                  } @else {
+                    $from: nth($breakpoint, 1);
+                    $until: nth($breakpoint, 2);
+                    @media only screen and
+                      (min-width: $from) and (max-width: $until - 1) {
+                      @content;
+                    }
+                  }
+                }
+
+        %section
+          %pre
+            %code.language-css
+              :preserve
+                .post-body {
+                  width: 100%;
+
+                  @include enhance(360px) {
+                    width: 66%;
+                  }
+                }
 
         %section
           %h3 UI Pitfalls
           %ul
             %li.fragment User cannot hover
             %li.fragment Native v. Mobile scrolling direction
-            %li.fragment Prefer Top/Bottom &gt;form&lt; labels over Left/Right ones
+            %li.fragment Prefer Top/Bottom &lt;form&gt; labels over Left/Right ones
 
           %aside.notes
             %ul
               %li Make links obvious.
               %li You can use horizontal scrolling on phone, but not on desktop!
-              %li Consider Top &amp; Bottom for &gt;form&lt; input so the keyboard doesn't disrupt
+              %li Consider Top &amp; Bottom for &lt;form&gt; input so the keyboard doesn't disrupt
 
         %section
           %h3 Native Control Danger
@@ -295,8 +336,26 @@
         %section
           %h3 Opportunities
           %ul
-            %li Easy Media Upload
-            %li Geolocation
+            %li.fragment Easy Media Upload
+            %li.fragment Geolocation
+
+        %section
+          %h2 Thanks!
+          %ul
+            %li
+              %a{ href: 'https://twitter.com/tomdooner' } @tomdooner
+            %li
+              %a{ href: 'mailto:tom.dooner@causes.com' } tom.dooner@causes.com
+            %li
+              Slides:
+              %a{ href: 'https://github.io/ted27/putting-mobile-first' }
+                https://github.io/ted27/putting-mobile-first
+            %li
+              Causes is hiring:
+              %ul
+                %li
+                  %a{ href: 'https://www.causes.com/jobs' } https://www.causes.com/jobs
+                %li Software Engineer, DevOps Engineer, Product Designer, and Internships!
 
     %script{:src => "reveal/js/reveal.js"}
     %script{:src => "highlight/build/highlight.pack.js"}
