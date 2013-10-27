@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Putting Mobile First</title>
+    <meta content='Causes Engineering' name='author' />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+    <link href='reveal/css/reveal.min.css' rel='stylesheet' />
+    <link href='highlight/src/styles/solarized_dark.css' rel='stylesheet' />
+    <link href='causes.css' rel='stylesheet' />
+    <!-- overrides for default reveal styles -->
+    <style type='text/css'>
+      /*<![CDATA[*/
+        .slides {
+          position: relative;
+        }
+        .reveal pre {
+          font-size: 24px;
+        }
+        .image-container {
+          text-align: center;
+          position: relative;
+        }
+        .move-to-the-center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+        }
+        .citation-link {
+          font-size: 18px !important;
+          position: absolute !important;
+          bottom: 0;
+          right: 0;
+        }
+        .performance-table {
+          font-size: 16px !important;
+        }
+        .performance-table th {
+          font-weight: bold;
+          width: 150px;
+        }
+        .performance-table td {
+          padding: 3px;
+        }
+        .speedcurve-image {
+          background-color: rgb(40, 40, 40);
+        }
+        .speedcurve-image .citation-link a {
+          color: #fff !important;
+        }
+      /*]]>*/
+    </style>
+    <script src='head.js/dist/head.min.js'></script>
+  </head>
+  <body id='causes'>
+    <div class='reveal'>
+      <div class='slides'>
+        <section>
+          <h1>Putting Mobile First</h1>
+          <br />
+          <h5>presented by</h5>
+          <h4>Tom Dooner</h4>
+          <img class='logo' src='assets/causes-logo.png' />
+          <aside class='notes'>
+            <ol>
+              <li>Hi, I'm Tom, etc.</li>
+              <li>
+                Causes is the world's largest online campaigning platform. It's
+                one of the largest Ruby on Rails web application. But you don't
+                need to be big in order to benefit from this talk.
+              </li>
+              <li>How many of you have heard about "mobile first"?</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <h2>Mobile Last</h2>
+          <div class='image-container'>
+            <img class='fragment' src='assets/cwru-homepage.png' style='width: 230px' />
+          </div>
+          <aside class='notes'>
+            It's illustrative to show the opposite, first. "Why didn't you make
+            the screenshot larger?" That's really the point - I shouldn't have
+            to.
+          </aside>
+        </section>
+        <section>
+          <h3>Obligatory XKCD</h3>
+          <div class='image-container'>
+            <img src='assets/xkcd.png' style='width: 672px' />
+          </div>
+          <aside class='notes'>
+            No presentation would be complete without one XKCD comic. In
+            seriousness, this is really the kind of thing that mobile first
+            epitomizes - putting your users first and getting them the content
+            however they want to digest it.
+          </aside>
+        </section>
+        <section>
+          <h3>Not Mobile Last</h3>
+          <div class='image-container'>
+            <img src='assets/causes-one.png' style='width: 230px' />
+          </div>
+        </section>
+        <section>
+          <h2>Mobile First</h2>
+          <ul>
+            <li>
+              Why
+              <ul>
+                <li>Accessibility</li>
+                <li>Performance</li>
+                <li>Simplicity</li>
+              </ul>
+            </li>
+            <li>
+              How
+              <ul>
+                <li>???</li>
+              </ul>
+            </li>
+          </ul>
+          <aside class='notes'>
+            By now you might have realized that this talk is meant for consumer
+            internet properties - and most of you might tune out because you
+            aren't working at an online startups. But web development these days
+            is huge, and I think it is very probable that many of you will find
+            yourselves developing a consumer webapp at some point.
+          </aside>
+        </section>
+        <section class='image-container'>
+          <div style='position: relative;'>
+            <img src='assets/phone.svg' style='height: 400px' />
+            <div class='move-to-the-center'>
+              25%
+            </div>
+          </div>
+          <aside class='notes'>
+            <ul>
+              <li>25% of mobile users don't access your site via desktop</li>
+              <li>
+                Your site needs to work for them, or else you're going to leave
+                users on the table.
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>2014</h3>
+          <ul>
+            <li>The year when mobile traffic surpasses desktop traffic</li>
+            <li class='fragment'>(oh hey, that's next year!)</li>
+          </ul>
+          <a class='citation-link' href='http://www.businessinsider.com/mobile-will-eclipse-desktop-by-2014-2012-6'>
+            [citation]
+          </a>
+          <aside class='notes'>
+            <ul>
+              <li>You owe a good experience to these users</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h2>Performance</h2>
+        </section>
+        <section>
+          <h3>Performance @ Google</h3>
+          <img src='assets/clock.svg' style='height: 200px; padding: 50px; float: left;' />
+          <table class='performance-table fragment'>
+            <thead>
+              <th>Type of Delay</th>
+              <th>Magnitude</th>
+              <th>Duration</th>
+              <th>Impact</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pre-header</td>
+                <td>50 ms</td>
+                <td>4 weeks</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Pre-header</td>
+                <td>100 ms</td>
+                <td>4 weeks</td>
+                <td>-0.20%</td>
+              </tr>
+              <tr>
+                <td>Post-header</td>
+                <td>200 ms</td>
+                <td>6 weeks</td>
+                <td>-0.29%</td>
+              </tr>
+              <tr>
+                <td>Post-header</td>
+                <td>400 ms</td>
+                <td>6 weeks</td>
+                <td>-0.59%</td>
+              </tr>
+              <tr>
+                <td>Post-ads</td>
+                <td>200 ms</td>
+                <td>4 weeks</td>
+                <td>-0.30%</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class='citation-link'>
+            <a href='http://services.google.com/fh/files/blogs/google_delayexp.pdf'>[citation]</a>
+            <a href='http://thenounproject.com/noun/clock/#icon-No1164'>[attribution]</a>
+          </div>
+          <aside class='notes'>
+            It took five weeks for the adverse effects to wear off.
+          </aside>
+        </section>
+        <section>
+          <h3>Performance @ Amazon</h3>
+          <img src='assets/clock.svg' style='height: 200px; padding: 50px; float: left;' />
+          <ul>
+            <li>100 ms = -1% of sales</li>
+          </ul>
+          <div class='citation-link'>
+            <a href='https://sites.google.com/site/glinden/Home/StanfordDataMining.2006-11-28.ppt?attredirects=0'>[citation]</a>
+          </div>
+        </section>
+        <section>
+          <h3>Performance</h3>
+          <img src='assets/clock.svg' style='height: 200px; padding: 50px; float: left;' />
+          <ul>
+            <li>3+ Seconds = -40% Users</li>
+          </ul>
+          <div class='citation-link'>
+            <a href='http://www.akamai.com/html/about/press/releases/2009/press_091409.html'>[citation]</a>
+          </div>
+        </section>
+        <section class='image-container'>
+          <div style='position: relative;'>
+            <img src='assets/phone.svg' style='height: 500px' />
+            <div class='move-to-the-center'>
+              Simplicity
+            </div>
+          </div>
+          <aside class='notes'>The Ultimate Sophistication</aside>
+        </section>
+        <section>
+          <h2>How?</h2>
+          <ul>
+            <li>Eye on Performance</li>
+            <li>Avoiding UI Dangers</li>
+            <li>Seize the Opportunities!</li>
+          </ul>
+        </section>
+        <section>
+          <div class='image-container speedcurve-image'>
+            <img src='assets/performance.png' style='margin: 200px 0;' />
+            <div class='citation-link'>
+              <a href='http://speedcurve.com'>[speedcurve]</a>
+              <a href='http://webpagetest.org'>[webpagetest]</a>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class='image-container speedcurve-image'>
+            <img src='assets/waterfall.png' />
+          </div>
+        </section>
+        <section>
+          <h3>Eye on Performance</h3>
+          <h4>Latency</h4>
+          <ul>
+            <li>3G: &gt; 400 ms</li>
+            <li>4G: &gt; 150 ms</li>
+          </ul>
+          <aside class='notes'>
+            latency is huge. Every TCP connection needs to make a round trip to
+            initialize, and so this adds real overhead on mobile
+          </aside>
+        </section>
+        <section>
+          <h3>First Cuts</h3>
+          <ul>
+            <li class='fragment'>Reduce Asset Count</li>
+            <li class='fragment'>Use CDN + Asset Sharding</li>
+            <li class='fragment'>Minify JS/CSS</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Second Cuts</h3>
+          <ul>
+            <li class='fragment'>Use efficient CSS</li>
+            <li class='fragment'>HTML Streaming</li>
+            <li class='fragment'>mod_pagespeed / ngx_pagespeed</li>
+            <li class='fragment'>Prioritize the Critical Rendering Path</li>
+          </ul>
+          <aside class='notes'>
+            SEO benefits too!
+          </aside>
+        </section>
+        <section>
+          <h3>Prioritize the Critical Rendering Path</h3>
+          <h4>Progressive Enhancement</h4>
+          <ul>
+            <li>Don't rely on JS for mission-critical functionality</li>
+          </ul>
+          <aside class='notes'>
+            Now is the demo of Causes
+          </aside>
+        </section>
+        <section>
+          <h2>Development Patterns</h2>
+          <ul>
+            <li class='fragment'>Responsive Stylesheets via SASS/LESS</li>
+            <li class='fragment'>JS Script Loader</li>
+          </ul>
+          <aside class='notes'>
+            <ul>
+              <li>
+                Embrace the @media query! There are great compass mixins that
+                can help with this.
+              </li>
+              <li>
+                If JS is no longer in the critical rendering path, don't load it
+                until the rest of the page is ready
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <pre><code class='language-css'>@mixin enhance($breakpoint) {&#x000A;  @if length($breakpoint) == 1 {&#x000A;    @media only screen and (min-width: $breakpoint) {&#x000A;      @content;&#x000A;    }&#x000A;  } @else {&#x000A;    $from: nth($breakpoint, 1);&#x000A;    $until: nth($breakpoint, 2);&#x000A;    @media only screen and&#x000A;      (min-width: $from) and (max-width: $until - 1) {&#x000A;      @content;&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</code></pre>
+        </section>
+        <section>
+          <pre><code class='language-css'>.post-body {&#x000A;  width: 100%;&#x000A;&#x000A;  @include enhance(360px) {&#x000A;    width: 66%;&#x000A;  }&#x000A;}&#x000A;</code></pre>
+        </section>
+        <section>
+          <h3>UI Pitfalls</h3>
+          <ul>
+            <li class='fragment'>User cannot hover</li>
+            <li class='fragment'>Native v. Mobile scrolling direction</li>
+            <li class='fragment'>Prefer Top/Bottom &lt;form&gt; labels over Left/Right ones</li>
+          </ul>
+          <aside class='notes'>
+            <ul>
+              <li>Make links obvious.</li>
+              <li>You can use horizontal scrolling on phone, but not on desktop!</li>
+              <li>Consider Top &amp; Bottom for &lt;form&gt; input so the keyboard doesn't disrupt</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h3>Native Control Danger</h3>
+          <div class='image-container'>
+            <img src='assets/native-danger.png' style='width: 400px' />
+          </div>
+          <div class='citation-link'>
+            <a href='http://www.abookapart.com/products/mobile-first'>[citation]</a>
+          </div>
+        </section>
+        <section>
+          <h3>Opportunities</h3>
+          <ul>
+            <li class='fragment'>Easy Media Upload</li>
+            <li class='fragment'>Geolocation</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Thanks!</h2>
+          <ul>
+            <li>
+              <a href='https://twitter.com/tomdooner'>@tomdooner</a>
+            </li>
+            <li>
+              <a href='mailto:tom.dooner@causes.com'>tom.dooner@causes.com</a>
+            </li>
+            <li>
+              Slides:
+              <a href='https://github.io/ted27/putting-mobile-first'>
+                https://github.io/ted27/putting-mobile-first
+              </a>
+            </li>
+            <li>
+              Causes is hiring:
+              <ul>
+                <li>
+                  <a href='https://www.causes.com/jobs'>https://www.causes.com/jobs</a>
+                </li>
+                <li>Software Engineer, DevOps Engineer, Product Designer, and Internships!</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src='reveal/js/reveal.js'></script>
+    <script src='highlight/build/highlight.pack.js'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        Reveal.initialize({
+          controls: false,
+          history: true,
+          mouseWheel: false,
+          progress: false,
+          rollingLinks: false,
+          transition: 'fade',
+          transitionSpeed: 'fast',
+          dependencies: [
+            { src: 'reveal/plugin/notes/notes.js', async: true }
+          ]
+        });
+        hljs.initHighlightingOnLoad();
+      //]]>
+    </script>
+  </body>
+</html>

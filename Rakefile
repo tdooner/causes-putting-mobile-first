@@ -47,7 +47,7 @@ task :publish => OUT_FILES do
   FileUtils.mv(Dir.glob(build + '*'), base, :force => true)
   FileUtils.rm_r(build)
 
-  `git add --all assets reveal highlight causes.css index.html`
+  `git add --all -f assets reveal highlight causes.css index.html`
   `git commit -m "Built presentation #{Time.now}"`
   `git checkout master`
   `git submodule update`
